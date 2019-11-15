@@ -16,8 +16,8 @@ app.get("/buyer/home", function(req, res) {
 });
 
 app.post("/buyer/products/:id/quote", (req, res) => {
-  console.log("Req quote with -", req.body);
-  res.status(201).send({ Messages: ["Not found"] });
+  console.log("Req quote with -", req.body, req.params.id);
+  res.status(404).send({ Messages: ["Not found"] });
 });
 
 app.get("/internalServerError", function(req, res) {
@@ -31,44 +31,42 @@ app.get("/buyer/products/:id", function(req, res) {
 
 app.get("/buyer/seller/:id", function(req, res) {
   res.status(200).send({
+    id: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b",
+    name: "Sketch Co",
     addressLine1: "Stellar Enclave",
     addressLine2: "Vile Parle",
     addressLine3: "",
-    countryId: 97,
-    stateId: 21,
-    cityId: 1,
-    id: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b",
-    name: "Sketch Co",
-    countriesOfOperation: [1, 89, 56],
-    countries: [
+    country: "India",
+    state: "Maharashtra",
+    city: "Mumbai",
+    countriesOfOperation: [
+      "Albania",
+      "Andorra",
+      "Argentina",
+      "Djibouti",
+      "India",
+      "Iraq"
+    ],
+    preferedCategories: [
       {
-        id: 97,
-        name: "India"
+        id: 2,
+        name: "Industrial & Machinary",
+        icon: "fas fa-industry",
+        imageUrl: "http://localhost:10000/devstoreaccount1/categories/2.jpg"
       },
       {
-        id: 1,
-        name: "Singapore"
+        id: 4,
+        name: "Electronics & Electrical",
+        icon: "fas fa-couch",
+        imageUrl: "http://localhost:10000/devstoreaccount1/categories/4.jpg"
       },
       {
-        id: 89,
-        name: "Denmark"
-      },
-      {
-        id: 56,
-        name: "China"
+        id: 5,
+        name: "Industrial Appliances",
+        icon: "fas fa-charging-station",
+        imageUrl: "http://localhost:10000/devstoreaccount1/categories/5.jpg"
       }
     ],
-    state: {
-      id: 21,
-      name: "Maharashtra",
-      countryId: 97
-    },
-    city: {
-      id: 1,
-      name: "Mumbai",
-      stateId: 21,
-      countryId: 97
-    },
     contactPerson: {
       firstName: "Sajith",
       lastName: "K",
