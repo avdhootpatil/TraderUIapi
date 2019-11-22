@@ -17,7 +17,37 @@ app.get("/buyer/home", function(req, res) {
 
 app.post("/buyer/products/:id/quote", (req, res) => {
   console.log("Req quote with -", req.body, req.params.id);
-  res.status(404).send({ Messages: ["Not found"] });
+  let { subject, message } = req.body;
+  if (subject && message) {
+    res.status(201).send({ Messages: ["Not found"] });
+  } else if (subject === "" || subject === "undefined") {
+    res.status(400).send({
+      errors: {
+        subject: ["The input was not valid."]
+      },
+      title: "One or more validation errors occurred.",
+      status: 400,
+      traceId: "0HLOKR6L7GCSI:00000001"
+    });
+  } else if (message === "" || message === "undefined") {
+    res.status(400).send({
+      errors: {
+        message: ["The input was not valid."]
+      },
+      title: "One or more validation errors occurred.",
+      status: 400,
+      traceId: "0HLOKR6L7GCSI:00000001"
+    });
+  }
+});
+
+app.get("/buyer/products/:id/quotes", (req, res) => {
+  console.log(req.params.id);
+  res.status(200).send({
+    subject: "10000kgs of raw steel",
+    message:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  });
 });
 
 app.get("/internalServerError", function(req, res) {
@@ -508,42 +538,6 @@ app.get("/categories", (req, res) => {
       name: "Industrial & Machinary",
       icon: "fas fa-industry",
       imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 7,
-      name: "Furniture Supplies",
-      icon: "fas fa-couch",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 12,
-      name: "Industrial & Machinary",
-      icon: "fas fa-industry",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 14,
-      name: "Furniture Supplies",
-      icon: "fas fa-couch",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 22,
-      name: "Industrial & Machinary",
-      icon: "fas fa-industry",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 24,
-      name: "Furniture Supplies",
-      icon: "fas fa-couch",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 32,
-      name: "Industrial & Machinary",
-      icon: "fas fa-industry",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
     }
   ]);
 });
@@ -671,42 +665,42 @@ app.get("/categories", function(req, res) {
 
 app.get("/countries", function(req, res) {
   res.status(200).send([
-    // {
-    //   name: "India",
-    //   callingCode: "91",
-    //   alpha2Code: "IN",
-    //   alpha3code: "IND",
-    //   id: 97,
-    //   createdOn: "2019-10-23T06:10:17.0752187",
-    //   deletedOn: null,
-    //   lastModifiedOn: "2019-10-23T06:10:17.0752238",
-    //   rowVersion: "AAAAAAAACIs="
-    // },
-    // {
-    //   name: "United Kingdom",
-    //   callingCode: "44",
-    //   alpha2Code: "GB",
-    //   alpha3code: "GBR",
-    //   id: 226,
-    //   createdOn: "2019-10-23T06:10:17.076638",
-    //   deletedOn: null,
-    //   lastModifiedOn: "2019-10-23T06:10:17.0766429",
-    //   rowVersion: "AAAAAAAACCk="
-    // },
-    // {
-    //   name: "United States",
-    //   callingCode: "1",
-    //   alpha2Code: "US",
-    //   alpha3code: "USA",
-    //   id: 229,
-    //   createdOn: "2019-10-23T06:10:17.0766969",
-    //   deletedOn: null,
-    //   lastModifiedOn: "2019-10-23T06:10:17.0767042",
-    //   rowVersion: "AAAAAAAACB8="
-    // }
+    {
+      name: "India",
+      callingCode: "91",
+      alpha2Code: "IN",
+      alpha3code: "IND",
+      id: 97,
+      createdOn: "2019-10-23T06:10:17.0752187",
+      deletedOn: null,
+      lastModifiedOn: "2019-10-23T06:10:17.0752238",
+      rowVersion: "AAAAAAAACIs="
+    },
+    {
+      name: "United Kingdom",
+      callingCode: "44",
+      alpha2Code: "GB",
+      alpha3code: "GBR",
+      id: 226,
+      createdOn: "2019-10-23T06:10:17.076638",
+      deletedOn: null,
+      lastModifiedOn: "2019-10-23T06:10:17.0766429",
+      rowVersion: "AAAAAAAACCk="
+    },
+    {
+      name: "United States",
+      callingCode: "1",
+      alpha2Code: "US",
+      alpha3code: "USA",
+      id: 229,
+      createdOn: "2019-10-23T06:10:17.0766969",
+      deletedOn: null,
+      lastModifiedOn: "2019-10-23T06:10:17.0767042",
+      rowVersion: "AAAAAAAACB8="
+    },
     {
       name: "Afghanistan",
-      callingCode: "93",
+      callingCode: "97",
       alpha2Code: "AF",
       alpha3code: "AFG",
       id: 1,
@@ -1723,7 +1717,7 @@ app.get("/countries/:id/states", function(req, res) {
       },
       {
         name: "Andhra Pradesh",
-        countryId: 97,
+        countryId: 99,
         id: 2,
         createdOn: "2019-10-23T06:10:17.4074077",
         deletedOn: null,

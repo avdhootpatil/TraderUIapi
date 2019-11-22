@@ -4,12 +4,12 @@ module.exports = () => {
         {
             "redirectTo": "https://www.google.com",
             "altText": "banner",
-            "imageUrl": "https://source.unsplash.com/1600x900/?construction,garments,industry"
+            "imageUrl": "https://www.intelligencenode.com/blog/wp-content/uploads/2019/02/electronics.jpg"
         },
         {
             "redirectTo": "https://www.google.com",
             "altText": "banner",
-            "imageUrl": "https://source.unsplash.com/1600x900/?construction,garments,industry"
+            "imageUrl": "https://i.pinimg.com/originals/39/5c/bd/395cbdc769cbbc96a8d123a5f1f16e80.jpg"
         }
     ],
     "featuredProducts": [
@@ -388,6 +388,7 @@ module.exports = () => {
     "topCategories": [
         {
             "id": 1,
+            imageUrl:"https://www.srasanz.org/files/5615/2443/8558/raw_sugar_cane_sticks.jpg",
             "subCategories": [
                 1,
                 2,
@@ -396,6 +397,8 @@ module.exports = () => {
         },
         {
             "id": 2,
+            imageUrl:"https://cdn.getyourguide.com/img/tour_img-1728184-146.jpg",
+
             "subCategories": [
                 4,
                 5,
@@ -812,19 +815,19 @@ module.exports = () => {
             "id": 1,
             "name": "Building & Construction",
             "icon": "fas fa-building",
-            "imageUrl": "1/1.jpg"
+            "imageUrl": "https://5.imimg.com/data5/AN/FV/MY-28487226/building-construstion-material-500x500.jpg"
         },
         {
             "id": 2,
             "name": "Industrial & Machinary",
             "icon": "fas fa-industry",
-            "imageUrl": "2/2.jpg"
+            "imageUrl": "https://www.srasanz.org/files/5615/2443/8558/raw_sugar_cane_sticks.jpg"
         },
         {
             "id": 3,
-            "name": "Apparel & Garments",
+            "name": "Chocolate Compound & More",
             "icon": "fas fa-tshirt",
-            "imageUrl": "3/3.jpg"
+            "imageUrl": "https://cdn.getyourguide.com/img/tour_img-1728184-146.jpg"
         },
         {
             "id": 4,

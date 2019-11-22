@@ -11,7 +11,7 @@ module.exports = () => {
       ],
       shipmentTimeInDays: 15,
       id: "5dc5388a58de1e007b84c611",
-      name: "U-Type Conference Table",
+      name: "Jaypee Reverse Drum Mixer Reversible Drum Mixer",
       minQuantity: "1",
       categoryId: 4,
       subCategoryId: 12,
@@ -57,7 +57,7 @@ module.exports = () => {
     },
     seller: {
       id: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b",
-      name: "Sketch Co"
+      name: "Encircle Metal Industries"
     }
   };
 };

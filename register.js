@@ -69,19 +69,22 @@ app.post("/registration/start", function(req, res) {
 app.post("/company/setup", function(req, res) {
   console.log("Company setup");
   console.log(req.body);
-  // res.status(500).send({
-  //   errors: {
-  //     phoneNumber: ["The input was not valid."],
-  //     email: ["Email already exists"]
-  //   },
-  //   title: "One or more validation errors occurred.",
-  //   status: 400,
-  //   traceId: "0HLOKR6L7GCSI:00000001"
-  // });
 
-  res.status(201).send({
-    Messages: ["Server did not respond"]
-  });
+  setTimeout(() => {
+    res.status(201).send({
+      errors: {
+        city: ["The input was not valid."],
+        state: ["State is not known"]
+      },
+      title: "One or more validation errors occurred.",
+      status: 400,
+      traceId: "0HLOKR6L7GCSI:00000001"
+    });
+
+    // res.status(400).send({
+    //   Messages: ["Server did not respond"]
+    // });
+  }, 3000);
 });
 
 app.listen(5001, () => {
