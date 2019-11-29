@@ -14,14 +14,14 @@ app.use(bodyParser.json());
 app.post("/registration", function(req, res) {
   console.log("Verified");
   console.log(req.body);
-  // res.status(500).send({
-  //   errors: {
-  //     token: ["Password does not match."]
-  //   },
-  //   title: "One or more validation errors occurred.",
-  //   status: 400,
-  //   traceId: "0HLOKR6L7GCSI:00000001"
-  // });
+  res.status(400).send({
+    errors: {
+      password: ["Password does not match."]
+    },
+    title: "One or more validation errors occurred.",
+    status: 400,
+    traceId: "0HLOKR6L7GCSI:00000001"
+  });
 
   res
     .status(201)
@@ -36,7 +36,7 @@ app.post("/registration", function(req, res) {
 app.post("/registration/verify", function(req, res) {
   console.log("Verified");
   console.log(req.body);
-  // res.status(500).send({
+  // res.status(400).send({
   //   errors: {
   //     phoneNumber: ["The OTP was not valid."]
   //   },
@@ -51,19 +51,21 @@ app.post("/registration/verify", function(req, res) {
 app.post("/registration/start", function(req, res) {
   console.log("registering");
   console.log(req.body);
-  // res.status(400).send({
-  //   errors: {
-  //     phoneNumber: ["The input was not valid."],
-  //     email: ["Email already exists"]
-  //   },
-  //   title: "One or more validation errors occurred.",
-  //   status: 400,
-  //   traceId: "0HLOKR6L7GCSI:00000001"
-  // });
+  setTimeout(() => {
+    // res.status(400).send({
+    //   errors: {
+    //     phoneNumber: ["The input was not valid."],
+    //     email: ["Email already exists"]
+    //   },
+    //   title: "One or more validation errors occurred.",
+    //   status: 400,
+    //   traceId: "0HLOKR6L7GCSI:00000001"
+    // });
 
-  res.status(200).send({
-    token: 51515451545155
-  });
+    res.status(200).send({
+      token: 51515451545155
+    });
+  }, 3000);
 });
 
 app.post("/company/setup", function(req, res) {
@@ -71,9 +73,15 @@ app.post("/company/setup", function(req, res) {
   console.log(req.body);
 
   setTimeout(() => {
-    res.status(201).send({
+    res.status(400).send({
       errors: {
-        city: ["The input was not valid."],
+        city: [
+          "The input was not valid ",
+          "You should select from the provided options only ",
+          "Third message ",
+          "Fourth message ",
+          "Fifth Message "
+        ],
         state: ["State is not known"]
       },
       title: "One or more validation errors occurred.",
@@ -81,7 +89,7 @@ app.post("/company/setup", function(req, res) {
       traceId: "0HLOKR6L7GCSI:00000001"
     });
 
-    // res.status(400).send({
+    // res.status(500).send({
     //   Messages: ["Server did not respond"]
     // });
   }, 3000);

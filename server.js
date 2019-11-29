@@ -6,6 +6,8 @@ var homeData = require("./data/home");
 var productDetails = require("./data/productDetails");
 var sellerDetails = require("./data/sellerDetails");
 var sellerCatalogDetails = require("./data/sellerCatalogDeatils");
+var categories = require("./data/categories");
+var subCatByProdId = require("./data/subCatByProdId");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,7 +21,9 @@ app.post("/buyer/products/:id/quote", (req, res) => {
   console.log("Req quote with -", req.body, req.params.id);
   let { subject, message } = req.body;
   if (subject && message) {
-    res.status(201).send({ Messages: ["Not found"] });
+    setTimeout(() => {
+      res.status(201).send({ Messages: ["Not found"] });
+    }, 2000);
   } else if (subject === "" || subject === "undefined") {
     res.status(400).send({
       errors: {
@@ -43,15 +47,11 @@ app.post("/buyer/products/:id/quote", (req, res) => {
 
 app.get("/buyer/products/:id/quotes", (req, res) => {
   console.log(req.params.id);
-  res.status(200).send({
+  res.status(400).send({
     subject: "10000kgs of raw steel",
     message:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   });
-});
-
-app.get("/internalServerError", function(req, res) {
-  res.status(500).json("INternal server error ");
 });
 
 app.get("/buyer/products/:id", function(req, res) {
@@ -317,6 +317,30 @@ app.get("/buyer/products/:id/sponsored", (req, res) => {
     subCategories: null,
     productTypes: null
   });
+});
+
+app.get("/buyer/categories", (req, res) => {
+  console.log("Categories");
+  let cat = categories();
+  res.status(200).send(cat);
+});
+
+app.get("/categories/:id", (req, res) => {
+  console.log("Categories by Id", req.params.id);
+  res.status(200).send({
+    id: 1,
+    name: "Building & Construction",
+    icon: "fas fa-building",
+    imageUrl:
+      "https://careers.carlisleconstructionmaterials.com/wp-content/uploads/home-hero-2000x1489.jpg"
+  });
+});
+
+app.get("/categories/:id/subCategories", (req, res) => {
+  console.log("subCategories by Category Id", req.params.id);
+
+  let sbPid = subCatByProdId();
+  res.status(200).send(sbPid);
 });
 
 app.get("/buyer/products/:id/similar", (req, res) => {
