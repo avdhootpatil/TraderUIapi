@@ -8,10 +8,21 @@ var sellerDetails = require("./data/sellerDetails");
 var sellerCatalogDetails = require("./data/sellerCatalogDeatils");
 var categories = require("./data/categories");
 var subCatByProdId = require("./data/subCatByProdId");
+const jwt = require("jsonwebtoken");
+
+const mockUser = {
+  company_id: 1424151,
+  access_token: "adgswdjvjsdsjhgvjxsxj"
+};
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use((req, res, next) => {
+  setTimeout(() => next(), 0);
+});
+
 app.get("/buyer/home", function(req, res) {
   console.log("Home");
   res.status(200).send(homeData());
@@ -19,6 +30,7 @@ app.get("/buyer/home", function(req, res) {
 
 app.post("/buyer/products/:id/quote", (req, res) => {
   console.log("Req quote with -", req.body, req.params.id);
+  console.log(JSON.stringify(req.headers));
   let { subject, message } = req.body;
   if (subject && message) {
     setTimeout(() => {
@@ -47,11 +59,13 @@ app.post("/buyer/products/:id/quote", (req, res) => {
 
 app.get("/buyer/products/:id/quotes", (req, res) => {
   console.log(req.params.id);
-  res.status(400).send({
-    subject: "10000kgs of raw steel",
-    message:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  });
+  setTimeout(() => {
+    res.status(400).send({
+      subject: "10000kgs of raw steel",
+      message:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    });
+  }, 3000);
 });
 
 app.get("/buyer/products/:id", function(req, res) {
@@ -60,48 +74,51 @@ app.get("/buyer/products/:id", function(req, res) {
 });
 
 app.get("/buyer/seller/:id", function(req, res) {
-  res.status(200).send({
-    id: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b",
-    name: "Sketch Co",
-    addressLine1: "Stellar Enclave",
-    addressLine2: "Vile Parle",
-    addressLine3: "",
-    country: "India",
-    state: "Maharashtra",
-    city: "Mumbai",
-    countriesOfOperation: [
-      "Albania",
-      "Andorra",
-      "Argentina",
-      "Djibouti",
-      "India",
-      "Iraq"
-    ],
-    preferedCategories: [
-      {
-        id: 2,
-        name: "Industrial & Machinary",
-        icon: "fas fa-industry",
-        imageUrl: "http://localhost:10000/devstoreaccount1/categories/2.jpg"
-      },
-      {
-        id: 4,
-        name: "Electronics & Electrical",
-        icon: "fas fa-couch",
-        imageUrl: "http://localhost:10000/devstoreaccount1/categories/4.jpg"
-      },
-      {
-        id: 5,
-        name: "Industrial Appliances",
-        icon: "fas fa-charging-station",
-        imageUrl: "http://localhost:10000/devstoreaccount1/categories/5.jpg"
+  jwt.sign({ user: mockUser }, "key", (er, token) => {
+    res.status(200).send({
+      token: token,
+      id: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b",
+      name: "Sketch Co",
+      addressLine1: "Stellar Enclave",
+      addressLine2: "Vile Parle",
+      addressLine3: "",
+      country: "India",
+      state: "Maharashtra",
+      city: "Mumbai",
+      countriesOfOperation: [
+        "Albania",
+        "Andorra",
+        "Argentina",
+        "Djibouti",
+        "India",
+        "Iraq"
+      ],
+      preferedCategories: [
+        {
+          id: 2,
+          name: "Industrial & Machinary",
+          icon: "fas fa-industry",
+          imageUrl: "http://localhost:10000/devstoreaccount1/categories/2.jpg"
+        },
+        {
+          id: 4,
+          name: "Electronics & Electrical",
+          icon: "fas fa-couch",
+          imageUrl: "http://localhost:10000/devstoreaccount1/categories/4.jpg"
+        },
+        {
+          id: 5,
+          name: "Industrial Appliances",
+          icon: "fas fa-charging-station",
+          imageUrl: "http://localhost:10000/devstoreaccount1/categories/5.jpg"
+        }
+      ],
+      contactPerson: {
+        firstName: "Sajith",
+        lastName: "K",
+        companyId: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b"
       }
-    ],
-    contactPerson: {
-      firstName: "Sajith",
-      lastName: "K",
-      companyId: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b"
-    }
+    });
   });
 });
 
