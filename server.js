@@ -8,6 +8,9 @@ var sellerDetails = require("./data/sellerDetails");
 var sellerCatalogDetails = require("./data/sellerCatalogDeatils");
 var categories = require("./data/categories");
 var subCatByProdId = require("./data/subCatByProdId");
+var getSellerProducts = require("./data/getSellerProducts");
+var getSellerProduct = require("./data/getSellerProduct");
+
 const jwt = require("jsonwebtoken");
 
 const mockUser = {
@@ -25,7 +28,7 @@ app.use((req, res, next) => {
 
 app.get("/buyer/home", function(req, res) {
   console.log("Home");
-  res.status(200).send(homeData());
+  res.status(500).send(homeData());
 });
 
 app.post("/buyer/products/:id/quote", (req, res) => {
@@ -34,7 +37,7 @@ app.post("/buyer/products/:id/quote", (req, res) => {
   let { subject, message } = req.body;
   if (subject && message) {
     setTimeout(() => {
-      res.status(201).send({ Messages: ["Not found"] });
+      res.status(200).send({ Messages: ["Not found"] });
     }, 2000);
   } else if (subject === "" || subject === "undefined") {
     res.status(400).send({
@@ -59,6 +62,8 @@ app.post("/buyer/products/:id/quote", (req, res) => {
 
 app.get("/buyer/products/:id/quotes", (req, res) => {
   console.log(req.params.id);
+  console.log(JSON.stringify(req.headers));
+
   setTimeout(() => {
     res.status(400).send({
       subject: "10000kgs of raw steel",
@@ -340,6 +345,18 @@ app.get("/buyer/categories", (req, res) => {
   console.log("Categories");
   let cat = categories();
   res.status(200).send(cat);
+});
+
+app.get("/seller/products", (req, res) => {
+  console.log("seller/products");
+  let sellerProducts = getSellerProducts();
+  res.status(200).send(sellerProducts);
+});
+
+app.get("/seller/products/:id", (req, res) => {
+  console.log("seller/products/id:", req.params.id);
+  let sellerProduct = getSellerProduct();
+  res.status(200).send(sellerProduct);
 });
 
 app.get("/categories/:id", (req, res) => {
@@ -691,18 +708,18 @@ app.get("/categories/:catId/subCategories/:Id/producttypes", (req, res) => {
 
 //Presests
 
-app.get("/categories", function(req, res) {
-  res.status(200).send([
-    {
-      id: 1242,
-      name: "Tea"
-    },
-    {
-      id: 2454,
-      name: "Tractor Engines"
-    }
-  ]);
-});
+// app.get("/categories", function(req, res) {
+//   res.status(200).send([
+//     {
+//       id: 1242,
+//       name: "Tea"
+//     },
+//     {
+//       id: 2454,
+//       name: "Tractor Engines"
+//     }
+//   ]);
+// });
 
 app.get("/countries", function(req, res) {
   res.status(200).send([
