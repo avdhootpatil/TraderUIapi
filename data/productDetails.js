@@ -3,7 +3,7 @@ module.exports = () => {
     product: {
       description:
         "We are leading supplier of Conference Table. Top:25mm prelaminated particle board with PVC beading Led & Modesty: 18mm prelaminated particle board with PVC beading",
-      specifications: {},
+      specifications: { nrs: "a" },
       tags: [
         "Office Conference Table",
         "U-Type Table",
@@ -16,7 +16,7 @@ module.exports = () => {
       categoryId: 4,
       subCategoryId: 12,
       productTypeId: 24,
-      sellerId: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b",
+      sellerId: "1",
       images: [
         {
           actualSizeUrl:
