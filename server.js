@@ -4,13 +4,12 @@ var bodyParser = require("body-parser");
 var cors = require("cors");
 var homeData = require("./data/home");
 var productDetails = require("./data/productDetails");
-var sellerDetails = require("./data/sellerDetails");
 var sellerCatalogDetails = require("./data/sellerCatalogDeatils");
 var categories = require("./data/categories");
 var subCatByProdId = require("./data/subCatByProdId");
 var getSellerProducts = require("./data/getSellerProducts");
 var getSellerProduct = require("./data/getSellerProduct");
-
+var getBuyerProducts = require("./data/getProducts");
 const jwt = require("jsonwebtoken");
 
 const mockUser = {
@@ -26,9 +25,21 @@ app.use((req, res, next) => {
   setTimeout(() => next(), 0);
 });
 
+app.delete("/seller/products/:id", (req, res) => {
+  console.log("/seller./products/:id", req.params.id);
+  console.log(JSON.stringify(req.headers));
+
+  res.status(200).send({});
+});
+
+app.get("/buyer/:id/products", function(req, res) {
+  console.log("getBuyerProducts");
+  res.status(200).send(getBuyerProducts());
+});
+
 app.get("/buyer/home", function(req, res) {
   console.log("Home");
-  res.status(500).send(homeData());
+  res.status(200).send(homeData());
 });
 
 app.post("/buyer/products/:id/quote", (req, res) => {
@@ -81,7 +92,7 @@ app.get("/buyer/products/:id", function(req, res) {
 app.get("/buyer/seller/:id", function(req, res) {
   jwt.sign({ user: mockUser }, "key", (er, token) => {
     res.status(200).send({
-      token: token,
+      token: 20,
       id: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b",
       name: "Sketch Co",
       addressLine1: "Stellar Enclave",
@@ -130,7 +141,9 @@ app.get("/buyer/seller/:id", function(req, res) {
 app.get("/buyer/seller/:id/catalog", function(req, res) {
   console.log("Catalog api called ");
   let cD = sellerCatalogDetails();
-  res.status(200).send(cD);
+  setTimeout(() => {
+    res.status(200).send(cD);
+  }, 3000);
 });
 
 app.get("/buyer/products/:id/sponsored", (req, res) => {
@@ -347,6 +360,22 @@ app.get("/buyer/categories", (req, res) => {
   res.status(200).send(cat);
 });
 
+app.put("/seller/products/:id", (req, res) => {
+  console.log("SP Put request -", req.params.id, req.headers);
+  res.status(200).send({ sellerProducts: "Added", id: 222555888 });
+});
+
+app.post("/seller/products", (req, res) => {
+  console.log("SP Put request -", req.params.id, req.headers);
+  res.status(201).send({ status: "ok" });
+});
+
+app.post("/seller/products/:id/images", (req, res) => {
+  setTimeout(() => {
+    res.status(201).send({ status: "ok" });
+  }, 3000);
+});
+
 app.get("/seller/products", (req, res) => {
   console.log("seller/products");
   let sellerProducts = getSellerProducts();
@@ -354,7 +383,7 @@ app.get("/seller/products", (req, res) => {
 });
 
 app.get("/seller/products/:id", (req, res) => {
-  console.log("seller/products/id:", req.params.id);
+  console.log("seller/products/id:", req.params.id, req.headers);
   let sellerProduct = getSellerProduct();
   res.status(200).send(sellerProduct);
 });
@@ -658,7 +687,7 @@ app.get("/categories/:catId/subCategories", (req, res) => {
 app.get("/categories/:catId/subCategories/:Id/producttypes", (req, res) => {
   console.log(req.params.Id);
   if (req.params.Id == 3) {
-    res.status(503).send([
+    res.status(200).send([
       {
         name: "Brick Making Machines",
         categoryId: 1,
@@ -681,7 +710,7 @@ app.get("/categories/:catId/subCategories/:Id/producttypes", (req, res) => {
       }
     ]);
   } else {
-    res.send([
+    res.status(500).send([
       {
         name: "Tractor Engines",
         categoryId: 1,
@@ -705,21 +734,6 @@ app.get("/categories/:catId/subCategories/:Id/producttypes", (req, res) => {
     ]);
   }
 });
-
-//Presests
-
-// app.get("/categories", function(req, res) {
-//   res.status(200).send([
-//     {
-//       id: 1242,
-//       name: "Tea"
-//     },
-//     {
-//       id: 2454,
-//       name: "Tractor Engines"
-//     }
-//   ]);
-// });
 
 app.get("/countries", function(req, res) {
   res.status(200).send([

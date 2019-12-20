@@ -1,52 +1,54 @@
 module.exports = () => {
   return {
-    description:
-      "High-Pressure Fly Ash Brick Making Machine ensures a superior quality of output along with a noise-free machine operation.",
-    specifications: {},
-    tags: [
-      "Brick Making Machine",
-      "noise-free Brick Making Machine",
-      "Construction machines"
-    ],
-    shipmentTimeInDays: 20,
-    isVerified: true,
-    verificationRemarks: [
-      {
-        verifiedOn: "2019-10-11T00:00:00Z",
-        verifiedBy: "01732a19-2a4f-4055-a45e-bdd17c2b7e4a",
-        remarks: ""
-      }
-    ],
-    createdOn: "0001-01-01T00:00:00",
-    id: "5dd629d04b84c5001d40c9ea",
-    name: "High Pressure Fly Ash Brick Making Machine",
-    minQuantity: "1pc",
-    categoryId: 1,
-    subCategoryId: 2,
-    productTypeId: 3,
-    sellerId: "1ed36e9c-922f-4e11-a214-ac3dad1a0caa",
-    images: [
-      {
-        actualSizeUrl:
-          "http://localhost:10000/devstoreaccount1/productimages/5da956011e211318a0cd2bb6.png",
-        thumbnailUrl: null,
-        id: "5da956011e211318a0cd2bb6"
-      },
-      {
-        actualSizeUrl:
-          "http://localhost:10000/devstoreaccount1/productimages/5da956074edb4118d859996d.jpg",
-        thumbnailUrl: null,
-        id: "5da956074edb4118d859996d"
-      },
-      {
-        actualSizeUrl:
-          "http://localhost:10000/devstoreaccount1/productimages/5da9560b54ec71356649e260.jpg",
-        thumbnailUrl: null,
-        id: "5da9560b54ec71356649e260"
-      }
-    ],
+    product: {
+      description:
+        "High-Pressure Fly Ash Brick Making Machine ensures a superior quality of output along with a noise-free machine operation.",
+      specifications: {},
+      tags: [
+        "Brick Making Machine",
+        "Noise-free Brick Making Machine",
+        "Construction machines"
+      ],
+      shipmentTimeInDays: 20,
+      isVerified: true,
+      verificationRemarks: [
+        {
+          verifiedOn: "2019-10-11T00:00:00Z",
+          verifiedBy: "01732a19-2a4f-4055-a45e-bdd17c2b7e4a",
+          remarks: ""
+        }
+      ],
+      createdOn: "0001-01-01T00:00:00",
+      id: "5dd629d04b84c5001d40c9ea",
+      name: "High Pressure Fly Ash Brick Making Machine",
+      minQuantity: "1pc",
+      categoryId: 1,
+      subCategoryId: 2,
+      productTypeId: 3,
+      sellerId: "1ed36e9c-922f-4e11-a214-ac3dad1a0caa",
+      images: [
+        {
+          actualSizeUrl:
+            "data:image/jpeg;base64,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",
+          thumbnailUrl: null,
+          id: "5da956011e211318a0cd2bb6"
+        },
+        {
+          actualSizeUrl:
+            "https://5.imimg.com/data5/UL/TQ/MY-6755787/high-pressure-fly-ash-brick-making-machine-500x500.jpg",
+          thumbnailUrl: null,
+          id: "5da956074edb4118d859996d"
+        },
+        {
+          actualSizeUrl:
+            "http://www.brickmachinery.in/wp-content/uploads/2018/08/fam-1800-2-price-2050000-2.jpg",
+          thumbnailUrl: null,
+          id: "5da9560b54ec71356649e260"
+        }
+      ]
+    },
     category: {
-      id: 1,
+      id: 3,
       name: "Building & Construction",
       icon: "fas fa-building",
       imageUrl: "http://localhost:10000/devstoreaccount1/categories/1.jpg"
@@ -58,7 +60,7 @@ module.exports = () => {
     },
     productType: {
       id: 0,
-      name: null,
+      name: "Construction Machines",
       categoryId: 0,
       subCategoryId: 0
     },

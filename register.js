@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.post("/registration", function(req, res) {
   console.log("Verified");
   console.log(req.body);
-  res.status(400).send({
+  res.status(201).send({
     errors: {
       password: ["Password does not match."]
     },
@@ -70,10 +70,10 @@ app.post("/registration/start", function(req, res) {
 
 app.post("/company/setup", function(req, res) {
   console.log("Company setup");
-  console.log(req.body);
+  console.log(req.body, JSON.stringify(req.headers));
 
   setTimeout(() => {
-    res.status(400).send({
+    res.status(201).send({
       errors: {
         city: [
           "The input was not valid ",
