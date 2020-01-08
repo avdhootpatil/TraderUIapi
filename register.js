@@ -11,6 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.post("/registration/seller", (req, res) => {
+  res.status(200).send({});
+});
+
 app.post("/registration", function(req, res) {
   console.log("Verified");
   console.log(req.body);

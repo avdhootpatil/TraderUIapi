@@ -10,7 +10,10 @@ var subCatByProdId = require("./data/subCatByProdId");
 var getSellerProducts = require("./data/getSellerProducts");
 var getSellerProduct = require("./data/getSellerProduct");
 var getBuyerProducts = require("./data/getProducts");
+const searchSellers = require("./data/searchSellers");
 const jwt = require("jsonwebtoken");
+
+var session = require("express-session");
 
 const mockUser = {
   company_id: 1424151,
@@ -37,6 +40,15 @@ app.delete("/seller/products/:id", (req, res) => {
 app.get("/category/:cId/subCategory/:sId/products", function(req, res) {
   console.log("getBuyerProducts",req.params.sId,req.params.cId);
   res.status(200).send(getBuyerProducts());
+});
+
+app.get("/buyer/search/sellers/:name", function(req, res) {
+  console.log(req.params.name);
+  if (req.params.name === "Astr") {
+    res.status(200).send(searchSellers());
+  } else {
+    res.status(200).send({ items: [] });
+  }
 });
 
 app.get("/buyer/home", function(req, res) {
@@ -1934,6 +1946,10 @@ app.get("/countries/:id/states/:sId/cities", function(req, res) {
       name: "New Delhi"
     }
   ]);
+});
+
+app.get("/", function(req, res) {
+  res.send("Hello " + JSON.stringify(req.session));
 });
 
 app.listen(6001, () => {
