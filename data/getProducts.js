@@ -54,7 +54,7 @@ module.exports = () => {
         ]
       }
     ],
-    seller: [
+    sellers: [
       {
         id: "eb30dfce-a2a3-49ef-8f86-eda48c636f1b",
         name: "Sketch Co",
@@ -135,10 +135,10 @@ module.exports = () => {
     countries: [
       {
         id: 1,
-        name: India
+        name: "India"
       }
     ],
-    state: [
+    states: [
       {
         id: 2,
         name: "Maharashtra"
