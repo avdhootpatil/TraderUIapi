@@ -32,8 +32,10 @@ app.delete("/seller/products/:id", (req, res) => {
   res.status(200).send({});
 });
 
-app.get("/buyer/:id/products", function(req, res) {
-  console.log("getBuyerProducts");
+
+
+app.get("/category/:cId/subCategory/:sId/products", function(req, res) {
+  console.log("getBuyerProducts",req.params.sId,req.params.cId);
   res.status(200).send(getBuyerProducts());
 });
 
