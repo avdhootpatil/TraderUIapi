@@ -12,19 +12,19 @@ module.exports = () => {
         images: [
           {
             actualSizeUrl:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Altitude_Montreal_Under_Construction.jpg/200px-Altitude_Montreal_Under_Construction.jpg",
+              "https://www.energy.gov/sites/prod/files/styles/open_graph_image/public/2017/05/f34/DenverBuildings015.JPG?itok=mlW5lWpQ",
             thumbnailUrl: null,
             id: "5da955a92033a16bfd01d931"
           },
           {
             actualSizeUrl:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Altitude_Montreal_Under_Construction.jpg/200px-Altitude_Montreal_Under_Construction.jpg",
+              "https://www.energy.gov/sites/prod/files/styles/open_graph_image/public/2017/05/f34/DenverBuildings015.JPG?itok=mlW5lWpQ",
             thumbnailUrl: null,
             id: "5da955c125cf01bea0292499"
           },
           {
             actualSizeUrl:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Altitude_Montreal_Under_Construction.jpg/200px-Altitude_Montreal_Under_Construction.jpg",
+              "https://www.energy.gov/sites/prod/files/styles/open_graph_image/public/2017/05/f34/DenverBuildings015.JPG?itok=mlW5lWpQ",
             thumbnailUrl: null,
             id: "5da955c7e6316d9020702650"
           }
@@ -41,13 +41,13 @@ module.exports = () => {
         images: [
           {
             actualSizeUrl:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Altitude_Montreal_Under_Construction.jpg/200px-Altitude_Montreal_Under_Construction.jpg",
+              "https://www.energy.gov/sites/prod/files/styles/open_graph_image/public/2017/05/f34/DenverBuildings015.JPG?itok=mlW5lWpQ",
             thumbnailUrl: null,
             id: "5da955daa641288ee8d35e0d"
           },
           {
             actualSizeUrl:
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Altitude_Montreal_Under_Construction.jpg/200px-Altitude_Montreal_Under_Construction.jpg",
+              "https://www.energy.gov/sites/prod/files/styles/open_graph_image/public/2017/05/f34/DenverBuildings015.JPG?itok=mlW5lWpQ",
             thumbnailUrl: null,
             id: "5da955e24ab832999059527a"
           }
@@ -69,14 +69,14 @@ module.exports = () => {
         name: "Building & Construction",
         icon: "fas fa-building",
         imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Altitude_Montreal_Under_Construction.jpg/200px-Altitude_Montreal_Under_Construction.jpg"
+          "https://www.energy.gov/sites/prod/files/styles/open_graph_image/public/2017/05/f34/DenverBuildings015.JPG?itok=mlW5lWpQ"
       },
       {
         id: 4,
         name: "Electronics & Electrical",
         icon: "fas fa-couch",
         imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Altitude_Montreal_Under_Construction.jpg/200px-Altitude_Montreal_Under_Construction.jpg"
+          "https://www.energy.gov/sites/prod/files/styles/open_graph_image/public/2017/05/f34/DenverBuildings015.JPG?itok=mlW5lWpQ"
       }
     ],
     subCategories: [
