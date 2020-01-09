@@ -10,6 +10,7 @@ var subCatByProdId = require("./data/subCatByProdId");
 var getSellerProducts = require("./data/getSellerProducts");
 var getSellerProduct = require("./data/getSellerProduct");
 var getBuyerProducts = require("./data/getProducts");
+var getBuyerProductsByPT = require("./data/getProductsByPT");
 const searchSellers = require("./data/searchSellers");
 const jwt = require("jsonwebtoken");
 
@@ -35,11 +36,22 @@ app.delete("/seller/products/:id", (req, res) => {
   res.status(200).send({});
 });
 
-
-
 app.get("/category/:cId/subCategory/:sId/products", function(req, res) {
-  console.log("getBuyerProducts",req.params.sId,req.params.cId);
+  console.log("getBuyerProducts", req.params.sId, req.params.cId);
   res.status(200).send(getBuyerProducts());
+});
+
+app.get("/category/:cId/subCategory/:sId/productType/:pTId/products", function(
+  req,
+  res
+) {
+  console.log(
+    "getBuyerProducts",
+    req.params.sId,
+    req.params.cId,
+    req.params.pTId
+  );
+  res.status(200).send(getBuyerProductsByPT());
 });
 
 app.get("/buyer/search/sellers/:name", function(req, res) {
