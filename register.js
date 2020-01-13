@@ -72,10 +72,10 @@ app.post("/registration/start", function(req, res) {
   }, 3000);
 });
 
-app.post("registration/seller", (req, res) => {
-  console.log("SP Put request -", req.params.id, req.headers);
-  res.status(200).send({ status: "ok" });
-});
+// app.post("/registration/seller", (req, res) => {
+//   console.log("SP Put request -", req.params.id, req.headers);
+//   res.status(500).send({ status: "ok" });
+// });
 
 app.post("/company/setup", function(req, res) {
   console.log("Company setup");

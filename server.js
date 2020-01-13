@@ -73,8 +73,9 @@ app.post("/buyer/products/:id/quote", (req, res) => {
   console.log(JSON.stringify(req.headers));
   let { subject, message } = req.body;
   if (subject && message) {
+    console.log(req);
     setTimeout(() => {
-      res.status(200).send({ Messages: ["Not found"] });
+      res.status(201).send({ Messages: ["Not found"] });
     }, 2000);
   } else if (subject === "" || subject === "undefined") {
     res.status(400).send({
@@ -116,6 +117,7 @@ app.get("/buyer/products/:id", function(req, res) {
 });
 
 app.get("/buyer/seller/:id", function(req, res) {
+  console.log(req.params);
   jwt.sign({ user: mockUser }, "key", (er, token) => {
     res.status(200).send({
       token: 20,
@@ -165,7 +167,7 @@ app.get("/buyer/seller/:id", function(req, res) {
 });
 
 app.get("/buyer/seller/:id/catalog", function(req, res) {
-  console.log("Catalog api called ");
+  console.log("Catalog api called ", req.params);
   let cD = sellerCatalogDetails();
   setTimeout(() => {
     res.status(200).send(cD);
@@ -391,10 +393,10 @@ app.put("/seller/products/:id", (req, res) => {
   res.status(200).send({ sellerProducts: "Added", id: 222555888 });
 });
 
-app.post("/seller/products", (req, res) => {
-  console.log("SP Put request -", req.params.id, req.headers);
-  res.status(201).send({ status: "ok" });
-});
+// app.post("/seller/products", (req, res) => {
+//   console.log("SP Put request -", req.params.id, req.headers);
+//   res.status(201).send({ status: "ok" });
+// });
 
 app.post("/seller/products/:id/images", (req, res) => {
   setTimeout(() => {
