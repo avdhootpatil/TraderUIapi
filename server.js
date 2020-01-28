@@ -14,6 +14,8 @@ var getBuyerProductsByPT = require("./data/getProductsByPT");
 const searchSellers = require("./data/searchSellers");
 const jwt = require("jsonwebtoken");
 
+const searchProducts = require("./data/searchProducts");
+
 var session = require("express-session");
 
 const mockUser = {
@@ -38,6 +40,18 @@ app.delete("/seller/products/:id", (req, res) => {
 
 app.get("/category/:cId/subCategory/:sId/products", function(req, res) {
   console.log("getBuyerProducts", req.params.sId, req.params.cId);
+  // res
+  //   .status(200)
+  //   .send({
+  //     products: [],
+  //     sellers: [],
+  //     categories: [],
+  //     subCategories: [],
+  //     productTypes: [],
+  //     cities: [],
+  //     countries: [],
+  //     states: []
+  //   });
   res.status(200).send(getBuyerProducts());
 });
 
@@ -54,12 +68,25 @@ app.get("/category/:cId/subCategory/:sId/productType/:pTId/products", function(
   res.status(200).send(getBuyerProductsByPT());
 });
 
-app.get("/buyer/search/sellers/:name", function(req, res) {
-  console.log(req.params.name);
-  if (req.params.name === "Astr") {
+app.get("/buyer/search/sellers", function(req, res) {
+  console.log("SSellers", req.query.name);
+  if (req.query.name === "Astr") {
     res.status(200).send(searchSellers());
+  } else if (req.query.name === "error") {
+    res.status(500).send();
   } else {
     res.status(200).send({ items: [] });
+  }
+});
+
+app.get("/buyer/search/products", (req, res) => {
+  console.log("SProducts", req.query.name);
+  if (req.query.name === "Building") {
+    res.status(200).send(searchProducts());
+  } else if (req.query.name === "error") {
+    res.status(404).send();
+  } else {
+    res.status(200).send({ page: 0, items: [] });
   }
 });
 
@@ -75,7 +102,7 @@ app.post("/buyer/products/:id/quote", (req, res) => {
   if (subject && message) {
     console.log(req);
     setTimeout(() => {
-      res.status(201).send({ Messages: ["Not found"] });
+      res.status(200).send({ Messages: ["Not found"] });
     }, 2000);
   } else if (subject === "" || subject === "undefined") {
     res.status(400).send({
