@@ -5,6 +5,9 @@ module.exports = () => {
       {
         type: "Product",
         data: {
+          cityName: "Mumbai",
+          countryName: "India",
+          stateName: "Maharashtra",
           name: "PSM - 4 Automatic Brick Machine",
           productTypeId: 3,
           productTypeName: "Laminate Sheets",
