@@ -15,11 +15,14 @@ const searchSellers = require("./data/searchSellers");
 const { getSellerProfile } = require("./data/seller/");
 const {
   getSponsoredProducts,
-  getSimilarProducts,
-  getStates
+  getSimilarProducts
 } = require("./data/product/index");
 
-const { getCountries, getCategories } = require("./data/presets/index");
+const {
+  getCountries,
+  getCategories,
+  getStates
+} = require("./data/presets/index");
 
 const jwt = require("jsonwebtoken");
 
