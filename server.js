@@ -68,6 +68,12 @@ app.get("/category/:cId/subCategory/:sId/productType/:pTId/products", function(
   res.status(200).send(getBuyerProductsByPT());
 });
 
+app.get("/buyer/search/suggestions", (req, res) => {
+  console.log("type", req.query.type, "text", req.query.text);
+
+  res.send([req.query.text, "Astr", "West", "North", "South"]);
+});
+
 app.get("/buyer/search/sellers", function(req, res) {
   console.log("SSellers", req.query.name);
   if (req.query.name === "Astr") {
@@ -420,21 +426,22 @@ app.put("/seller/products/:id", (req, res) => {
   res.status(200).send({ sellerProducts: "Added", id: 222555888 });
 });
 
-// app.post("/seller/products", (req, res) => {
-//   console.log("SP Put request -", req.params.id, req.headers);
-//   res.status(201).send({ status: "ok" });
-// });
-
-app.post("/seller/products/:id/images", (req, res) => {
-  setTimeout(() => {
-    res.status(201).send({ status: "ok" });
-  }, 3000);
-});
-
 app.get("/seller/products", (req, res) => {
   console.log("seller/products");
   let sellerProducts = getSellerProducts();
   res.status(200).send(sellerProducts);
+});
+
+app.post("/seller/products", (req, res) => {
+  console.log(req.body);
+  // let sellerProducts = getSellerProducts();
+  res.status(400).send({ status: "yup", id: "1254" });
+});
+
+app.post("/seller/products/:id/images", (req, res) => {
+  console.log("Upload Image", req.body);
+  // let sellerProducts = getSellerProducts();
+  res.status(200).send({ status: "yup" });
 });
 
 app.get("/seller/products/:id", (req, res) => {
@@ -458,6 +465,9 @@ app.get("/categories/:id/subCategories", (req, res) => {
   console.log("subCategories by Category Id", req.params.id);
 
   let sbPid = subCatByProdId();
+  if (req.params.id > 4) {
+    res.status(500).send(sbPid);
+  }
   res.status(200).send(sbPid);
 });
 

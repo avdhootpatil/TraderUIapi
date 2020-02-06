@@ -3,7 +3,7 @@ module.exports = () => {
     product: {
       description:
         "High-Pressure Fly Ash Brick Making Machine ensures a superior quality of output along with a noise-free machine operation.",
-      specifications: {},
+      specifications: [],
       tags: [
         "Brick Making Machine",
         "Noise-free Brick Making Machine",
