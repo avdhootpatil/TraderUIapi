@@ -15,10 +15,11 @@ const searchSellers = require("./data/searchSellers");
 const { getSellerProfile } = require("./data/seller/");
 const {
   getSponsoredProducts,
-  getSimilarProducts
+  getSimilarProducts,
+  getStates
 } = require("./data/product/index");
 
-const { getCountries } = require("./data/presets/index");
+const { getCountries, getCategories } = require("./data/presets/index");
 
 const jwt = require("jsonwebtoken");
 
@@ -238,38 +239,7 @@ app.get("/buyer/products/:id/similar", (req, res) => {
 });
 
 app.get("/categories", (req, res) => {
-  res.status(200).send([
-    {
-      id: 3,
-      name: "Apparel & Garments",
-      icon: "fas fa-tshirt",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 1,
-      name: "Building & Construction",
-      icon: "fas fa-building",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 5,
-      name: "Electronics & Electrical",
-      icon: "fas fa-charging-station",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 4,
-      name: "Furniture Supplies",
-      icon: "fas fa-couch",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    },
-    {
-      id: 2,
-      name: "Industrial & Machinary",
-      icon: "fas fa-industry",
-      imageUrl: "http://127.0.0.1:10000/devstoreaccount1/categories"
-    }
-  ]);
+  res.status(200).send(getCategories());
 });
 
 app.get("/categories/:catId/subCategories", (req, res) => {
@@ -385,143 +355,7 @@ app.get("/countries", function(req, res) {
 app.get("/countries/:id/states", function(req, res) {
   console.log(req.params.id);
   if (req.params.id == 97) {
-    res.status(200).send([
-      {
-        name: "Andaman and Nicobar Islands",
-        countryId: 97,
-        id: 1,
-        createdOn: "2019-10-23T06:10:17.4060142",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4072313",
-        rowVersion: "AAAAAAAACMI="
-      },
-      {
-        name: "Andhra Pradesh",
-        countryId: 99,
-        id: 2,
-        createdOn: "2019-10-23T06:10:17.4074077",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074171",
-        rowVersion: "AAAAAAAACNY="
-      },
-      {
-        name: "Arunachal Pradesh",
-        countryId: 97,
-        id: 3,
-        createdOn: "2019-10-23T06:10:17.4074228",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074278",
-        rowVersion: "AAAAAAAACNc="
-      },
-      {
-        name: "Assam",
-        countryId: 97,
-        id: 4,
-        createdOn: "2019-10-23T06:10:17.4074328",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074376",
-        rowVersion: "AAAAAAAACNg="
-      },
-      {
-        name: "Bihar",
-        countryId: 97,
-        id: 5,
-        createdOn: "2019-10-23T06:10:17.4074425",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074473",
-        rowVersion: "AAAAAAAACNk="
-      },
-      {
-        name: "Chandigarh",
-        countryId: 97,
-        id: 6,
-        createdOn: "2019-10-23T06:10:17.4074522",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074571",
-        rowVersion: "AAAAAAAACNo="
-      },
-      {
-        name: "Chhattisgarh",
-        countryId: 97,
-        id: 7,
-        createdOn: "2019-10-23T06:10:17.4074619",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074667",
-        rowVersion: "AAAAAAAACNs="
-      },
-      {
-        name: "Dadra and Nagar Haveli",
-        countryId: 97,
-        id: 8,
-        createdOn: "2019-10-23T06:10:17.4074714",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074762",
-        rowVersion: "AAAAAAAACNw="
-      },
-      {
-        name: "Daman and Diu",
-        countryId: 97,
-        id: 9,
-        createdOn: "2019-10-23T06:10:17.4074842",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074896",
-        rowVersion: "AAAAAAAACN0="
-      },
-      {
-        name: "Delhi",
-        countryId: 97,
-        id: 10,
-        createdOn: "2019-10-23T06:10:17.4074947",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4074995",
-        rowVersion: "AAAAAAAACN4="
-      },
-      {
-        name: "Goa",
-        countryId: 97,
-        id: 11,
-        createdOn: "2019-10-23T06:10:17.4075044",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4075091",
-        rowVersion: "AAAAAAAACN8="
-      },
-      {
-        name: "Gujarat",
-        countryId: 97,
-        id: 12,
-        createdOn: "2019-10-23T06:10:17.407514",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4075188",
-        rowVersion: "AAAAAAAACOA="
-      },
-      {
-        name: "Haryana",
-        countryId: 97,
-        id: 13,
-        createdOn: "2019-10-23T06:10:17.4075237",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4075286",
-        rowVersion: "AAAAAAAACOE="
-      },
-      {
-        name: "Himachal Pradesh",
-        countryId: 97,
-        id: 14,
-        createdOn: "2019-10-23T06:10:17.4075334",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4075381",
-        rowVersion: "AAAAAAAACOI="
-      },
-      {
-        name: "Jammu and Kashmir",
-        countryId: 97,
-        id: 15,
-        createdOn: "2019-10-23T06:10:17.407543",
-        deletedOn: null,
-        lastModifiedOn: "2019-10-23T06:10:17.4075477",
-        rowVersion: "AAAAAAAACOM="
-      }
-    ]);
+    res.status(200).send(getStates());
   } else {
     res.status(200).send([]);
   }
